@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio | Naina Jose</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Vega-Lite libraries for the charts -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@6.4.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.3.0"></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="project.html">Project</a>
+        <span class="spacer"></span>
+        <a href="https://github.com/naina-jose">GitHub</a>
+        <!-- TODO: replace with your real LinkedIn URL -->
+        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/">LinkedIn</a>
+    </nav>
+
+    <h1 class="big">Portfolio</h1>
+
+    <!-- ===================== CC1 ===================== -->
+    <section class="challenge">
+        <h2>CC1. Hosting: display charts in my own site</h2>
+        <figure id="cc1_chart1"></figure>
+        <figure id="cc1_chart2"></figure>
+    </section>
+
+    <!-- ===================== CC2 ===================== -->
+    <section class="challenge">
+        <h2>CC2. Building: my own visualisations</h2>
+        <figure id="cc2_chart1"></figure>
+        <figure id="cc2_chart2"></figure>
+    </section>
+
+    <!-- ===================== CC3 ===================== -->
+    <section class="challenge">
+        <h2>CC3. Policy debate</h2>
+        <p>[Policy topic, max 25 words, your own words.]</p>
+        <figure id="cc3_chart1"></figure>
+        <figure id="cc3_chart2"></figure>
+        <p>[Commentary, max 25 words, your own words.]</p>
+    </section>
+
+    <!-- ===================== CC4 ===================== -->
+    <section class="challenge">
+        <h2>CC4. Replication: re-create, then improve, someone else's chart</h2>
+        <!-- Put the screenshot in images/ and update the filename -->
+        <img src="images/cc4_original.png" alt="Original chart being replicated">
+        <figure id="cc4_replication"></figure>
+        <figure id="cc4_improved"></figure>
+        <p>[What you changed and why, max 25 words, your own words.]</p>
+    </section>
+
+    <script>
+        // One line per chart: vegaEmbed('#figure-id', 'charts/file.json')
+        // Uncomment each line once its JSON file is in the charts/ folder.
+        vegaEmbed('#cc1_chart1', 'charts/cc1_chart1.json');
+        vegaEmbed('#cc1_chart2', 'charts/cc1_chart2.json');
+
+        // vegaEmbed('#cc2_chart1', 'charts/cc2_chart1.json');
+        // vegaEmbed('#cc2_chart2', 'charts/cc2_chart2.json');
+
+        // vegaEmbed('#cc3_chart1', 'charts/cc3_chart1.json');
+        // vegaEmbed('#cc3_chart2', 'charts/cc3_chart2.json');
+
+        // vegaEmbed('#cc4_replication', 'charts/cc4_replication.json');
+        // vegaEmbed('#cc4_improved', 'charts/cc4_improved.json');
+    </script>
+</body>
+</html>
