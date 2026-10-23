@@ -1,0 +1,138 @@
+/* =====================================================================
+   style.css  –  Naina Jose, PP434 website
+   One stylesheet for every page. Change the colours and fonts in :root
+   and the whole site updates.
+
+   Style rules (for me):
+   - Text: dark ink on white. One accent colour (plum) for links + h1.
+   - Headings: Newsreader (serif). Everything else: Public Sans.
+   - Keep paragraphs short; the charts do the talking.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --ink:    #17212B;   /* main text */
+  --muted:  #5B6672;   /* intro text, captions, source lines */
+  --rule:   #DDE1E6;   /* thin lines and borders */
+  --accent: #5B2A6E;   /* plum: links, main heading, first chart colour */
+  --paper:  #FFFFFF;   /* page background */
+
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:  'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ---------- Page ---------- */
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ---------- Navigation bar ---------- */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.5em;
+  padding-bottom: 0.8em;
+  margin-bottom: 3em;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  font-weight: 500;
+}
+nav a { color: var(--ink); }
+nav a:hover { color: var(--accent); }
+nav .spacer { flex: 1; }   /* pushes GitHub / LinkedIn to the right */
+
+/* ---------- Headings ---------- */
+h1, h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+}
+
+h1, .big {
+  font-size: 2.9rem;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4em;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: var(--ink);
+  margin-top: 2.2em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.8em 0 0.3em;
+}
+
+/* Intro line under the main heading (the template's "small" class) */
+.small, .intro {
+  font-family: var(--sans);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--muted);
+  margin: 0 0 2em;
+}
+
+/* ---------- Text ---------- */
+p {
+  max-width: 68ch;          /* comfortable line length */
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-thickness: 2px; }
+nav a, h2 a { text-decoration: none; }
+h2 a:hover { text-decoration: underline; }
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Sections, charts, images ---------- */
+section { margin-bottom: 3.5em; }
+
+figure {
+  margin: 1em 0 1.5em;
+  overflow-x: auto;          /* wide charts scroll instead of breaking the page */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+
+/* Small grey caption, e.g. for sources under an image */
+.caption {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  body { font-size: 16px; padding: 24px 18px 60px; }
+  h1, .big { font-size: 2.2rem; }
+  h2 { font-size: 1.45rem; }
+}
