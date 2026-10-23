@@ -1,0 +1,15 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/naina-jose/naina-jose.github.io/refs/heads/main/data/us_diesel_data_real.csv"
+  },
+  "title": {"text": "Diesel Prices in the US since 1994"},
+  "width": 300,
+  "height": 300,
+  "mark": {"type": "line", "color": "red"},
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "value", "type": "quantitative"}
+  },
+  "config": {}
+}
