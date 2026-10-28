@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Youth unemployment rate vs. NEET rate across the EU",
+    "subtitle": "Ages 15–24, 2025"
+  },
+  "width": 600,
+  "height": {"step": 22},
+  "data": {"url": "https://raw.githubusercontent.com/naina-jose/naina-jose.github.io/main/data/eu_france_youth.csv"},
+
+  "transform": [
+    {"filter": "datum.year == 2025"},
+    {"filter": "datum.measure == 'unemployment rate' || datum.measure == 'NEET rate'"},
+    {"filter": "indexof(['Bosnia and Herzegovina', 'Iceland', 'North Macedonia', 'Norway', 'Serbia', 'Switzerland'], datum.country) < 0 && !test(/rkiye/, datum.country)"},
+    {"filter": "isValid(datum.value)"},
+    {"calculate": "datum.measure == 'unemployment rate' ? 'Unemployment rate' : datum.measure", "as": "measure"},
+    {"calculate": "datum.measure == 'Unemployment rate' ? datum.value : null", "as": "unemp"}
+  ],
+
+  "encoding": {
+    "y": {
+      "field": "country", "type": "nominal", "title": null,
+      "sort": {"field": "unemp", "op": "max", "order": "descending"},
+      "axis": {
+        "labelFontWeight": {"condition": {"test": "datum.value == 'France'", "value": 700}, "value": 400},
+        "labelColor": {"condition": {"test": "datum.value == 'France'", "value": "#0f54a9"}, "value": "#555555"}
+      }
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#C8C8C8", "strokeWidth": 2},
+      "encoding": {
+        "x": {"aggregate": "min", "field": "value", "type": "quantitative", "title": "%"},
+        "x2": {"aggregate": "max", "field": "value"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 90, "opacity": 1},
+      "encoding": {
+        "x": {"field": "value", "type": "quantitative", "title": "%"},
+        "color": {
+          "field": "measure", "type": "nominal", "title": null,
+          "scale": {
+            "domain": ["Unemployment rate", "NEET rate"],
+            "range": ["#4D7A41", "#6460A8"]
+          },
+          "legend": {
+          "orient": "bottom",
+          "labelLimit": 0, "labelAlign": "left",
+          "labelExpr": "datum.label == 'Unemployment rate' ? 'Youth unemployment rate' : datum.label == 'NEET rate' ? 'Youth NEET rate (Not in Employment, Education or Training)' : datum.label"
+}
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "measure", "title": "Measure"},
+          {"field": "value", "format": ".1f", "title": "%"}
+        ]
+      }
+    }
+  ]
+}

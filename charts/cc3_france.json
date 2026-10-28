@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Young people people out of work in France",
+    "subtitle": "Ages 15–24, 2016-2025 "
+  },
+  "width": "container",
+  "height": 320,
+  "config": {
+  "axis": {
+    "gridDash": [2, 3],
+    "gridColor": "#d9d9d9"
+    }
+  },
+  "encoding": {
+    "x": {"field": "year", "type": "temporal", "timeUnit": "year", "title": null},
+    "y": {"field": "value", "type": "quantitative", "title": "%",
+          "scale": {"domain": [0, 30]}},
+    "color": {
+      "field": "measure", "type": "nominal", "title": null,
+      "scale": {
+        "domain": ["Unemployment rate (% of labour force)", "NEET rate (% of all young people)"],
+        "range": ["#4D7A41", "#6460A8"]
+      },
+      "legend": {"orient": "bottom", "labelLimit": 0, "labelAlign": "left",
+      "labelExpr": "datum.label == 'Unemployment rate (% of labour force)' ? 'Youth unemployment rate' : datum.label == 'NEET rate (% of all young people)' ? 'Youth NEET Rate (Not in Employment, Education or Training)' : datum.label"
+      }
+    },
+    "tooltip": [
+      {"field": "measure", "title": "Measure"},
+      {"field": "year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+      {"field": "value", "format": ".1f", "title": "%"}
+    ]
+  },
+
+  "layer": [
+    {
+      "data": {"url": "https://raw.githubusercontent.com/naina-jose/naina-jose.github.io/refs/heads/main/data/data%3Afr_youth_unemployment.csv"},
+      "transform": [{"calculate": "'Unemployment rate (% of labour force)'", "as": "measure"}],
+      "mark": {"type": "line", "strokeWidth": 2.5, "point": true}
+    },
+    {
+      "data": {"url": "https://raw.githubusercontent.com/naina-jose/naina-jose.github.io/refs/heads/main/data/fr_neet.csv"},
+      "transform": [{"calculate": "'NEET rate (% of all young people)'", "as": "measure"}],
+      "mark": {"type": "line", "strokeWidth": 2.5, "point": true}
+    }
+  ]
+}
